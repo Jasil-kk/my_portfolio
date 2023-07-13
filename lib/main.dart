@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_portfolio/widgets/about_layout.dart';
+import 'package:my_portfolio/widgets/footer_layout.dart';
 import 'package:my_portfolio/widgets/header.dart';
 import 'package:my_portfolio/widgets/home_layout.dart';
 import 'package:my_portfolio/widgets/services_layout.dart';
@@ -30,6 +31,7 @@ class MyApp extends StatelessWidget {
               WorkLayout(),
               AboutMe(),
               ServicesLayout(),
+              FooterLayout(),
             ],
           ),
         ),

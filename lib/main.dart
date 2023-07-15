@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:my_portfolio/widgets/about_layout.dart';
 import 'package:my_portfolio/widgets/footer_layout.dart';
@@ -16,7 +18,24 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    final ScrollController _scrollController = ScrollController();
+
+    void scrollToBottom() {
+      _scrollController.animateTo(
+        _scrollController.position.maxScrollExtent,
+        duration: const Duration(milliseconds: 2000),
+        curve: Curves.easeInOut,
+      );
+    }
+    void scrollToTop() {
+      _scrollController.animateTo(
+        _scrollController.position.minScrollExtent,
+        duration: const Duration(milliseconds: 2000),
+        curve: Curves.easeInOut,
+      );
+    }
+
+    return  MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'My Portfolio',
       home: Scaffold(
@@ -25,13 +44,14 @@ class MyApp extends StatelessWidget {
           child: Header(),
         ),
         body: SingleChildScrollView(
+          controller: _scrollController,
           child: Column(
             children: [
-              HomeLayout(),
+              HomeLayout(scrollToBottom: scrollToBottom),
               WorkLayout(),
               AboutMe(),
               ServicesLayout(),
-              FooterLayout(),
+              FooterLayout(scrollToTop: scrollToTop),
             ],
           ),
         ),
@@ -39,3 +59,4 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+

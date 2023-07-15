@@ -4,7 +4,9 @@ import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:my_portfolio/colors.dart';
 
 class HomeLayout extends StatelessWidget {
-  const HomeLayout({Key? key}) : super(key: key);
+
+  final VoidCallback? scrollToBottom;
+  const HomeLayout({Key? key,this.scrollToBottom}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +20,7 @@ class HomeLayout extends StatelessWidget {
 
     return Container(
       margin: const EdgeInsets.only(top: 100),
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         image: DecorationImage(
           image: AssetImage('assets/images/background.png'),
           fit: BoxFit.contain,
@@ -105,16 +107,20 @@ class HomeLayout extends StatelessWidget {
               ],
             ),
           ),
-          Container(
-            margin: EdgeInsets.only(top: sw > 786 ? 100 : 50),
-            child: Image.asset(
-              'assets/images/scroll-to-bottom.png',
-              width: sw > 786 ? 120 : 80,
-              height: sw > 786 ? 120 : 80,
+          GestureDetector(
+            onTap: scrollToBottom,
+            child: Container(
+              margin: EdgeInsets.only(top: sw > 786 ? 100 : 50),
+              child: Image.asset(
+                'assets/images/scroll-to-bottom.png',
+                width: sw > 786 ? 120 : 80,
+                height: sw > 786 ? 120 : 80,
+              ),
             ),
           ),
         ],
       ),
     );
   }
+
 }
